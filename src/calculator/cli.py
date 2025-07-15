@@ -1,6 +1,7 @@
 import operations
 
 
+# main method to handle user input and call operations
 def main():
     print("Choose operation: add, subtract, multiply, divide, power, modulus")
     op = input("Operation: ").strip().lower()
