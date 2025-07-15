@@ -1,5 +1,6 @@
 import operations
 
+
 def main():
     print("Choose operation: add, subtract, multiply, divide, power, modulus")
     op = input("Operation: ").strip().lower()
@@ -23,5 +24,6 @@ def main():
         return
 
     print(f"Result: {result}")
+
 
 main()
