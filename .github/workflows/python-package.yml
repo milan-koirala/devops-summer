@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fix shallow clone warning for SonarCloud
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -39,6 +41,7 @@ jobs:
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.sources=.
+            -Dsonar.python.version=3.13
 
       - name: Send Google Chat notification
         if: always()  # Always runs (success/failure)
@@ -46,6 +49,6 @@ jobs:
           STATUS="${{ job.status }}"
           curl -X POST -H 'Content-Type: application/json' \
           -d "{
-            \"text\": \"📣 CI Pipeline **${STATUS}**\n🔹 Repository: ${{ github.repository }}\n🔹 Event: ${{ github.event_name }}\n🔹 Triggered by: ${{ github.actor }}\n🔹 Workflow: ${{ github.workflow }}\n🔹 Commit: ${{ github.sha }}\n🔗 [View Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\"
+            \"text\": \"📣 CI Pipeline **${STATUS}**\\n🔹 Repository: ${{ github.repository }}\\n🔹 Event: ${{ github.event_name }}\\n🔹 Triggered by: ${{ github.actor }}\\n🔹 Workflow: ${{ github.workflow }}\\n🔹 Commit: ${{ github.sha }}\\n🔗 [View Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\"
           }" \
           "${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}"
