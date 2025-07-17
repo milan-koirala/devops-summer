@@ -1,4 +1,17 @@
 from calculator.operations import add
+"""
+Unit tests for calculator operations.
+This module contains test cases for the following functions from the
+calculator.operations module:
+- add: Tests addition of two numbers.
+- subtract: Tests subtraction of two numbers.
+- multiply: Tests multiplication of two numbers.
+- divide: Tests division of two numbers and division by zero.
+- power: Tests exponentiation of numbers.
+- modulus: Tests remainder operation between two numbers.
+Each test function asserts the correctness of its respective operation
+using various inputs to ensure expected results.
+"""
 from calculator.operations import subtract
 from calculator.operations import multiply
 from calculator.operations import divide
